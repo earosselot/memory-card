@@ -1,9 +1,14 @@
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Main from "./components/Main";
+import './styles/App.css'
 
-
-function App() {
+const App = (props) => {
   return (
-    <div>
-      Hola
+    <div className="container">
+        <Header />
+        <Main characters={props.characters} />
+        <Footer />
     </div>
   );
 }

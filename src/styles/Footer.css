@@ -1,0 +1,17 @@
+.Footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    font-size: 1rem;
+    background-color: yellowgreen;
+}
+
+.Footer p {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.footer-link :hover {
+    opacity: 75%;
+}
