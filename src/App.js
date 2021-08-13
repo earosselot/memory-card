@@ -3,11 +3,11 @@ import Footer from "./components/Footer";
 import Main from "./components/Main";
 import './styles/App.css'
 
-const App = (props) => {
+const App = () => {
   return (
     <div className="container">
         <Header />
-        <Main characters={props.characters} />
+        <Main />
         <Footer />
     </div>
   );

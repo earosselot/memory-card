@@ -1,38 +1,41 @@
-import Card from "./Card";
-import {useState} from "react";
+import Card from './Card'
+import { useState } from 'react'
+import { shuffleArray } from '../../auxiliar'
+import '../../styles/CardContainer.css'
 
-function shuffleArray(arr) {
-    arr.sort(() => Math.random() - 0.5)
-}
-
-const CardContainer = (props) => {
-
+const CardContainer = ({ setScore, resetScore, loading, charactersData }) => {
     const [endGame, setEndGame] = useState(false)
+    const [characters, setCharacters] = useState(shuffleArray(charactersData))
 
     const finishGame = () => {
         setEndGame(true)
     }
 
     const resetGame = () => {
-        props.resetScore()
+        resetScore()
         setEndGame(false)
+        shuffleCards()
     }
 
-    console.log(props.characters)
-
-    // props.characters = [ { name: "rick", id: 12, image: "https://asdasd" }, ...]
-
-    // let numbers = [1,2,3,4,5,6]
-    // let cardsJsxArray = numbers.map(number => <Card key={number} id={number} setScore={props.setScore} finishGame={finishGame} />)
-
-    if (props.characters) {
-        let cardsJsxArray = props.characters.map(character => <Card key={character.id} id={character.id} character={character} setScore={props.setScore} finishGame={finishGame} />)
-        shuffleArray(cardsJsxArray)
+    const shuffleCards = () => {
+        setCharacters((prevNumbers) => shuffleArray(prevNumbers))
     }
+
+    let cardsJsxArray = characters.map(character =>
+        <Card
+            key={character.id}
+            id={character.id}
+            name={character.name}
+            image={character.image}
+            setScore={setScore}
+            finishGame={finishGame}
+            shuffleCards={shuffleCards}/>)
 
     return (
-        <div>
-            { (endGame) ? <button type="button" onClick={resetGame}>reset</button> : props.characters && <div> {cardsJsxArray} </div> }
+        <div >
+            { (endGame) ?
+                <button type="button" onClick={resetGame}>reset</button> :
+                <div className="Card-container"> {cardsJsxArray} </div> }
         </div>
     )
 }
