@@ -1,0 +1,19 @@
+.Main {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 40px;
+    display: flex;
+    padding: 5px 0;
+    justify-content: space-around;
+}
+
+header div {
+    border: solid 4px #ffe000;
+    border-radius: 10px;
+    width: 140px;
+    text-align: center;
+    color: white;
+}

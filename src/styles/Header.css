@@ -5,9 +5,14 @@
     background-color: black;
     color: white;
     padding: 20px;
+    justify-content: center;
 }
 
 h1 {
     margin-block-start: 0;
     margin-block-end: 0;
+}
+
+.highlight-text {
+    color: #7acb02;
 }
