@@ -2,7 +2,7 @@
 const HighScoreBoard = (props) => {
 
     return (
-        <div>
+        <div className="score">
             High Score: {props.highScore}
         </div>
     )

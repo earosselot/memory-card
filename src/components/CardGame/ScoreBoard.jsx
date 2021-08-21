@@ -2,7 +2,7 @@
 const ScoreBoard = (props) => {
 
     return (
-        <div>
+        <div className="score">
             Score: {props.score}
         </div>
     )
