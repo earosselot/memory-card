@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import '../../styles/Card.css'
 
-const Card = ({name, image, setScore, shuffleCards, finishGame, stage, startGame}) => {
+function Card({name, image, setScore, shuffleCards, finishGame, stage, startGame}) {
     const [clicked, setClicked] = useState(false)
 
     const handleClick = () => {

@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import FlipMove from "react-flip-move";
 
 
 const useStyles = makeStyles((theme) => (
@@ -103,23 +104,9 @@ const Main = () => {
     }
 
     const shuffleCards = () => {
-        const newCharacters = shuffle(characters)
+        const newCharacters = shuffleArray(characters)
         setCharacters(newCharacters)
     }
-
-    // let jsxChararcters = characters?.map(character => (
-    //   <Card
-    //     key={character.id}
-    //     id={character.id}
-    //     name={character.name}
-    //     image={character.image}
-    //     setScore={setScore}
-    //     startGame={startGame}
-    //     finishGame={finishGame}
-    //     shuffleCards={shuffleCards}
-    //     stage={stage}
-    //   />
-    // ))
 
     return (
         <section className="Main">
@@ -146,10 +133,8 @@ const Main = () => {
                 </FormControl>
             </header>
 
-            {/*{jsxChararcters && <FlipMove>{jsxChararcters}</FlipMove>}*/}
-
             <CardContainer>
-                {characters.map(character => (
+                {characters?.map(character => (
                   <Card
                     key={character.id}
                     id={character.id}
