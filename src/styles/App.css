@@ -1,3 +1,12 @@
+html,
+body,
+#root,
+.container {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+}
+
 .container {
     flex-grow: 1;
     display: flex;

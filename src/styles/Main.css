@@ -1,22 +1,27 @@
 .Main {
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 header {
-    /*height: 40px;*/
     display: flex;
     padding: 5px 0;
     justify-content: space-around;
+    align-items: center;
 }
 
 .score {
+    background-color: rgba(255, 255, 255, 0.18);
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid 4px #ffe000;
+    border: solid 1px #ffffff;
     border-radius: 10px;
     width: 140px;
+    height: 60.75px;
     text-align: center;
     color: white;
 }
+
+

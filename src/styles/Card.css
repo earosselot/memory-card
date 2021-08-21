@@ -2,18 +2,21 @@
 .Card {
     display: flex;
     flex-direction: column;
-    border: solid 4px #ffe000;
+    /*border: solid 4px #ffe000;*/
     border-radius: 10px;
     width: 200px;
     align-items: center;
     color: white;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.18);
+    transition-property: all;
+    transition-duration: 2s;
 }
 
 .Card img {
     height: 150px;
     width: 150px;
-    border: solid 1px #12dc34;
+    border: solid 1px black;
     border-radius: 6px;
     margin-top: 10px
 }
@@ -21,7 +24,7 @@
 .card-name {
     display: flex;
     height: 3rem;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     margin-bottom: 10px;
 }

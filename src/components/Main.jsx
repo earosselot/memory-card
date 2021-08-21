@@ -3,6 +3,7 @@ import HighScoreBoard from "./CardGame/HighScoreBoard";
 import CardContainer from "./CardGame/CardContainer";
 import {useEffect, useState} from "react";
 import {randomNumberArray, shuffleArray} from "../auxiliar"
+import { shuffle } from 'lodash'
 import Card from "./CardGame/Card";
 import '../styles/Main.css'
 
@@ -11,17 +12,21 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
-}));
+const useStyles = makeStyles((theme) => (
+    {
+        formControl: {
+            margin: theme.spacing(1),
+            minWidth: 120,
+        },
+        selectEmpty: {
+            marginTop: theme.spacing(2),
+        },
+    })
+);
+
 
 const Difficulties = [
     {
@@ -72,7 +77,6 @@ const Main = () => {
     }
 
     function handleDificultyChange(event) {
-        console.log(typeof event.target.value)
         setCharsNumber(event.target.value)
     }
 
@@ -91,6 +95,7 @@ const Main = () => {
 
     const finishGame = () => {
         setStage('gameEnded')
+        shuffleCards()
     }
 
     const startGame = () => {
@@ -98,9 +103,23 @@ const Main = () => {
     }
 
     const shuffleCards = () => {
-        const newCharacters = shuffleArray(characters)
+        const newCharacters = shuffle(characters)
         setCharacters(newCharacters)
     }
+
+    // let jsxChararcters = characters?.map(character => (
+    //   <Card
+    //     key={character.id}
+    //     id={character.id}
+    //     name={character.name}
+    //     image={character.image}
+    //     setScore={setScore}
+    //     startGame={startGame}
+    //     finishGame={finishGame}
+    //     shuffleCards={shuffleCards}
+    //     stage={stage}
+    //   />
+    // ))
 
     return (
         <section className="Main">
@@ -108,7 +127,10 @@ const Main = () => {
                 <ScoreBoard score={score} />
                 <HighScoreBoard highScore={highScore}/>
                 <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">Dificulty</InputLabel>
+                    <InputLabel
+                      id="demo-simple-select-outlined-label">
+                        Dificulty
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
@@ -123,8 +145,11 @@ const Main = () => {
                     </Select>
                 </FormControl>
             </header>
+
+            {/*{jsxChararcters && <FlipMove>{jsxChararcters}</FlipMove>}*/}
+
             <CardContainer>
-                {!loading && characters.map(character => (
+                {characters.map(character => (
                   <Card
                     key={character.id}
                     id={character.id}
@@ -135,10 +160,13 @@ const Main = () => {
                     finishGame={finishGame}
                     shuffleCards={shuffleCards}
                     stage={stage}
-                    />
+                  />
                 ))}
             </CardContainer>
-            <button onClick={getCharacters}>Change Cards</button>
+
+            <Button onClick={getCharacters} variant="contained" color="primary">
+                Change Cards
+            </Button>
         </section>
     )
 }

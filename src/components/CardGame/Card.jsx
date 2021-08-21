@@ -30,9 +30,8 @@ const Card = ({name, image, setScore, shuffleCards, finishGame, stage, startGame
             <img src={image}
                  alt={name} />
             <div className="card-name">
-                <span>{name}</span>
+                <div>{name}</div>
             </div>
-
         </div>
     )
 }
