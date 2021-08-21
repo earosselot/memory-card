@@ -1,4 +1,4 @@
-# Memory Card Game
+# Rick and Morty Memory Card Game
 
 [Live on Github Pages](https://earosselot.github.io/memory-card/)
 
@@ -14,3 +14,4 @@ from [theodinproject.com](https://www.theodinproject.com/paths/full-stack-javasc
 * CSS
 * JavaScript
 * Webpack
+* [Rick and Morty API](https://rickandmortyapi.com/)
