@@ -18,10 +18,45 @@ header {
     align-items: center;
     border: solid 1px #ffffff;
     border-radius: 10px;
-    width: 140px;
-    height: 60.75px;
+    width: 170px;
+    height: 46px;
+    margin: 10px;
     text-align: center;
     color: white;
 }
 
+.difficulty-form {
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 10px;
+    position: relative;
+}
 
+.difficulty-form  label {
+    font-size: .8rem;
+    position: absolute;
+    top: -0.6rem;
+    left: 0.5rem;
+    padding: 3px;
+    z-index: 1;
+    background-color: #252b38;
+    color: white;
+}
+
+.difficulty-select {
+    cursor: pointer;
+    border: none;
+    background-color: #252b38;
+    color: white;
+    padding: 4px 6px;
+}
+
+.difficulty-select:focus-visible {
+    border: none;
+}
+
+.difficulty-select:focus-visible {
+    border: none;
+    outline: none;
+}

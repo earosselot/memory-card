@@ -3,17 +3,10 @@ import HighScoreBoard from "./CardGame/HighScoreBoard";
 import CardContainer from "./CardGame/CardContainer";
 import {useEffect, useState} from "react";
 import {randomNumberArray, shuffleArray} from "../auxiliar"
-import { shuffle } from 'lodash'
 import Card from "./CardGame/Card";
 import '../styles/Main.css'
-
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import FlipMove from "react-flip-move";
 
 
 const useStyles = makeStyles((theme) => (
@@ -32,15 +25,15 @@ const useStyles = makeStyles((theme) => (
 const Difficulties = [
     {
         value: 6,
-        name: 'Jerry(6)'
+        name: 'Jerry (6)'
     },
     {
         value: 10,
-        name: 'Morty(10)'
+        name: 'Morty (10)'
     },
     {
         value: 16,
-        name: 'Rick(16)'
+        name: 'Rick (16)'
     },
     {
         value: 20,
@@ -51,11 +44,9 @@ const Difficulties = [
 const Main = () => {
     const [score, setScore] = useState(0)
     const [highScore, setHighScore] = useState(0)
-    const [charsNumber, setCharsNumber] = useState(10);
+    const [charsNumber, setCharsNumber] = useState(6);
     const [characters, setCharacters] = useState([])
-    const [loading, setLoading] = useState(true)
     const [stage, setStage] = useState('inGame')
-    const classes = useStyles();
 
     useEffect(() => {
         getCharacters()
@@ -74,7 +65,6 @@ const Main = () => {
             }
         })
         setCharacters(newCharacters)
-        setLoading(false)
     }
 
     function handleDificultyChange(event) {
@@ -85,18 +75,23 @@ const Main = () => {
         if (highScore < score) {
             setHighScore(score)
         }
+        if (score === charsNumber) {
+            console.log('end')
+            setStage('gameEnded')
+        }
     }, [score])
 
     useEffect(() => {
         if (stage === 'gameEnded') {
             setScore(0)
             setStage('reset')
+            setCharacters([])
+            getCharacters()
         }
     }, [stage])
 
     const finishGame = () => {
         setStage('gameEnded')
-        shuffleCards()
     }
 
     const startGame = () => {
@@ -108,29 +103,35 @@ const Main = () => {
         setCharacters(newCharacters)
     }
 
+    function getNewCards() {
+        getCharacters()
+        finishGame()
+    }
+
     return (
         <section className="Main">
             <header>
                 <ScoreBoard score={score} />
                 <HighScoreBoard highScore={highScore}/>
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel
-                      id="demo-simple-select-outlined-label">
+                <form className="difficulty-form">
+                    <label
+                      htmlFor="difficulty-select"
+                      className="difficulty-label">
                         Dificulty
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
+                    </label>
+                    <select
+                      id="difficulty-select"
+                      className="difficulty-select"
                       value={charsNumber}
                       onChange={handleDificultyChange}
                     >
                         {Difficulties.map(difficulty =>
-                          <MenuItem value={difficulty.value}>
+                          <option value={difficulty.value} key={difficulty.value}>
                               {difficulty.name}
-                          </MenuItem>
+                          </option>
                         )}
-                    </Select>
-                </FormControl>
+                    </select>
+                </form>
             </header>
 
             <CardContainer>
@@ -149,7 +150,7 @@ const Main = () => {
                 ))}
             </CardContainer>
 
-            <Button onClick={getCharacters} variant="contained" color="primary">
+            <Button onClick={getNewCards} variant="contained" color="primary">
                 Change Cards
             </Button>
         </section>
@@ -157,4 +158,3 @@ const Main = () => {
 }
 
 export default Main
-
