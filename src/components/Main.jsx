@@ -69,6 +69,7 @@ const Main = () => {
 
     function handleDificultyChange(event) {
         setCharsNumber(event.target.value)
+        setStage('gameEnded')
     }
 
     useEffect(() => {
